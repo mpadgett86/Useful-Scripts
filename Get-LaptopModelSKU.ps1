@@ -1,11 +1,12 @@
-﻿$sku = "((Get-WmiObject -Namespace root\wmi -Class MS_SystemInformation | Select-Object -ExpandProperty SystemSKU) -as [string])"
+# Works for Lenovo ThinkPad devices
 
-$z = ($sku.Substring($sku.IndexOf(' ') + 1))
-$y = $z.IndexOf(' ')
+$sku = ((Get-WmiObject -Namespace root\wmi -Class MS_SystemInformation | Select-Object -ExpandProperty SystemSKU) -as [string])
 
-if ($y -gt 0) {
-    $model = $z.Substring(0, $y)
-} else { $model = $z }
+$tmp = ($sku.Substring($sku.IndexOf(' ') + 1))
+$n = $tmp.IndexOf(' ')
+
+if ($n -gt 0) {
+    $model = $tmp.Substring(0, $n)
+} else { $model = $tmp }
 
 write-host $model
-
