@@ -7,6 +7,7 @@ $n = $tmp.IndexOf(' ')
 
 if ($n -gt 0) {
     $model = $tmp.Substring(0, $n)
-} else { $model = $tmp }
+} 
+else { $model = $tmp }
 
 write-host $model
